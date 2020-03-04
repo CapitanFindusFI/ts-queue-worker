@@ -1,0 +1,46 @@
+{
+  "name": "ts-queue-worker",
+  "version": "1.0.0",
+  "description": "Simple TypeScript structure for Node.js apps using queues",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CapitanFindusFI/ts-queue-worker.git"
+  },
+  "keywords": [
+    "typescript",
+    "queue",
+    "worker"
+  ],
+  "author": {
+    "name": "CapitanFindusFI",
+    "email": "am95.dev@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CapitanFindusFI/ts-queue-worker/issues"
+  },
+  "homepage": "https://github.com/CapitanFindusFI/ts-queue-worker#readme",
+  "files": [
+    "lib/**/*"
+  ],
+  "devDependencies": {
+    "@types/jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.3.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.5"
+  }
+}
