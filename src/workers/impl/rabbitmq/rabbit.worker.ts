@@ -4,7 +4,6 @@ import {IRabbitMQConfig} from "./rabbit.config";
 import * as Ampq from 'amqp-ts'
 
 export class RabbitWorker extends GenericWorker<Ampq.Connection, IRabbitMQConfig, Ampq.Message> {
-    private amqpExchange!: Ampq.Exchange;
     private amqpQueue!: Ampq.Queue;
 
     constructor(rabbitConfig: IQueueConfig<IRabbitMQConfig>) {
@@ -29,10 +28,6 @@ export class RabbitWorker extends GenericWorker<Ampq.Connection, IRabbitMQConfig
 
     connect(): void {
         const {queueAuth} = this.workerConfig;
-        if (queueAuth.exchangeName) {
-            this.amqpExchange = this.workerClient.declareExchange(queueAuth.exchangeName)
-        }
-
         if (queueAuth.queueName) {
             this.amqpQueue = this.workerClient.declareQueue(queueAuth.queueName)
         }
