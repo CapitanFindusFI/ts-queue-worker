@@ -32,6 +32,7 @@ export class SqsWorker extends GenericWorker<SQS, ISQSConfig> {
     }
 
     processMessage(message: any): void {
+        console.log(message);
     }
 
 }
