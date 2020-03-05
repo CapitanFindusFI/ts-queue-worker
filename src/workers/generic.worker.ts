@@ -1,5 +1,5 @@
-import {QueueWorker} from "./interfaces/queue.worker";
-import {IQueueConfig} from "./interfaces/queue.config";
+import {QueueWorker} from "../interfaces/queue.worker";
+import {IQueueConfig} from "../interfaces/queue.config";
 
 export default abstract class GenericWorker implements QueueWorker {
     protected workerConfig: IQueueConfig;

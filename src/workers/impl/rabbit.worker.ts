@@ -1,5 +1,5 @@
 import GenericWorker from "../generic.worker";
-import {IQueueConfig} from "../interfaces/queue.config";
+import {IQueueConfig} from "../../interfaces/queue.config";
 
 export class RabbitWorker extends GenericWorker {
     private rabbitMQClient: any;
