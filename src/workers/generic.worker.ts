@@ -1,7 +1,7 @@
 import {QueueWorker} from "../interfaces/queue.worker";
 import {IQueueConfig} from "../interfaces/queue.config";
 
-export default abstract class GenericWorker<T, K> implements QueueWorker {
+export default abstract class GenericWorker<T, K, M> implements QueueWorker<M> {
     protected workerConfig: IQueueConfig<K>;
     protected workerClient!: T;
 
@@ -29,6 +29,6 @@ export default abstract class GenericWorker<T, K> implements QueueWorker {
 
     abstract pullMessages(): void;
 
-    abstract processMessage(message: any): void;
+    abstract processMessage(message: M): void;
 
 }

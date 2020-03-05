@@ -3,7 +3,7 @@ import {IQueueConfig} from "../../../interfaces/queue.config";
 import {IRabbitMQConfig} from "./rabbit.config";
 import * as Ampq from 'amqp-ts'
 
-export class RabbitWorker extends GenericWorker<Ampq.Connection, IRabbitMQConfig> {
+export class RabbitWorker extends GenericWorker<Ampq.Connection, IRabbitMQConfig, Ampq.Message> {
     private amqpExchange!: Ampq.Exchange;
     private amqpQueue!: Ampq.Queue;
 
@@ -48,7 +48,7 @@ export class RabbitWorker extends GenericWorker<Ampq.Connection, IRabbitMQConfig
         })
     }
 
-    processMessage(message: any): void {
+    processMessage(message: Ampq.Message): void {
         console.log(message);
     }
 

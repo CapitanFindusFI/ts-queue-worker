@@ -2,9 +2,10 @@ import GenericWorker from "../../generic.worker";
 import {IQueueConfig} from "../../../interfaces/queue.config";
 import {ISQSConfig} from "./sqs.config";
 import SQS = require("aws-sdk/clients/sqs");
-import {ReceiveMessageRequest} from "aws-sdk/clients/sqs";
+import {ReceiveMessageRequest, ReceiveMessageResult} from "aws-sdk/clients/sqs";
+import {AWSError} from "aws-sdk";
 
-export class SqsWorker extends GenericWorker<SQS, ISQSConfig> {
+export class SqsWorker extends GenericWorker<SQS, ISQSConfig, SQS.ReceiveMessageResult> {
 
     constructor(sqsConfig: IQueueConfig<ISQSConfig>) {
         super(sqsConfig);
@@ -28,11 +29,14 @@ export class SqsWorker extends GenericWorker<SQS, ISQSConfig> {
             QueueUrl: this.workerConfig.queueUrl
         };
 
-        this.workerClient.receiveMessage(receiveConfig, this.processMessage.bind(this));
+        this.workerClient.receiveMessage(receiveConfig, (err: AWSError, data: ReceiveMessageResult) => {
+            if (err) throw err;
+            this.processMessage(data)
+        });
     }
 
-    processMessage(message: any): void {
-        console.log(message);
+    processMessage(message: SQS.ReceiveMessageResult): void {
+        console.log(message)
     }
 
 }

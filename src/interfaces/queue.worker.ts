@@ -1,9 +1,9 @@
-export interface QueueWorker {
+export interface QueueWorker<T> {
     isEnabled(): boolean;
 
     run(): void;
 
     pullMessages(): void
 
-    processMessage(message: any): void
+    processMessage(message: T): void
 }
