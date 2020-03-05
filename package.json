@@ -37,6 +37,8 @@
     "lib/**/*"
   ],
   "dependencies": {
+    "amqp-ts": "^1.8.0",
+    "aws-sdk": "^2.633.0",
     "ts-node": "^8.6.2"
   },
   "devDependencies": {

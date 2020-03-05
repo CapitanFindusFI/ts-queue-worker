@@ -1,11 +1,5 @@
-interface IQueueAuth {
-    host: string
-    user: string
-    password: string
-}
-
-export interface IQueueConfig {
+export interface IQueueConfig<T> {
     queueUrl: string;
-    queueAuth: IQueueAuth;
+    queueAuth: T;
     messagesToPull: number;
 }

@@ -1,10 +1,11 @@
 import {QueueWorker} from "../interfaces/queue.worker";
 import {IQueueConfig} from "../interfaces/queue.config";
 
-export default abstract class GenericWorker implements QueueWorker {
-    protected workerConfig: IQueueConfig;
+export default abstract class GenericWorker<T, K> implements QueueWorker {
+    protected workerConfig: IQueueConfig<K>;
+    protected workerClient!: T;
 
-    protected constructor(workerConfig: IQueueConfig) {
+    protected constructor(workerConfig: IQueueConfig<K>) {
         this.workerConfig = workerConfig;
         this.connect();
     }
